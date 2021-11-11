@@ -13,7 +13,7 @@ const { eliminarHabitacion } = require('../controllers/controlador.js')
 
 //rutas.get('/avanzada/v1/jugadores', buscarJugadores)
 rutas.get('/avanzada/v1/habitaciones/:id', buscarHabitacion)
-rutas.post('/avanzada/v1/habitacioness', registrarHabitacion)
+rutas.post('/avanzada/v1/habitaciones', registrarHabitacion)
 rutas.put('/avanzada/v1/habitaciones/:id', editarHabitacion)
 rutas.delete('/avanzada/v1/habitaciones/:id', eliminarHabitacion)
 

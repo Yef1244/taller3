@@ -10,7 +10,7 @@ const HabitacionModelo = Schema({
     },
 
     fotografiaHabitacion: {
-        type: Number,
+        type: String,
         required: true
     },
 
@@ -20,12 +20,12 @@ const HabitacionModelo = Schema({
     },
 
     precioAdulto: {
-        type: String,
+        type: Number,
         required: true
     },
 
     precioNino: {
-        type: String,
+        type: Number,
         required: true
     }
 
