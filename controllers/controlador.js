@@ -4,25 +4,25 @@
 //IMPORTACIONES
 const { request, response } = require('express')
 
-const { insertarJugador } = require('../services/servicio.js')
-const { leerJugador } = require('../services/servicio.js')
-const { leerJugadores } = require('../services/servicio.js')
-const { borrarJugador } = require('../services/servicio.js')
-const { modificarJugador } = require('../services/servicio.js')
+const { insertarHabitacion } = require('../services/servicio.js')
+const { leerHabitacion } = require('../services/servicio.js')
+//const { leerJugadores } = require('../services/servicio.js')
+const { borrarHabitacion } = require('../services/servicio.js')
+const { modificarHabitacion } = require('../services/servicio.js')
 
 
 
 //crear una funcion para cada operacion del servidor
-async function registrarJugador(peticion = request, respuesta = response) {
+async function registrarHabitacion(peticion = request, respuesta = response) {
 
     try {
 
         let datosPeticion = peticion.body
 
-        await insertarJugador(datosPeticion)
+        await insertarHabitacion(datosPeticion)
         respuesta.status(200).json({
             estado: true,
-            mensaje: "Exito registrando el jugador"
+            mensaje: "Exito registrando la habitacion"
         })
 
 
@@ -36,17 +36,17 @@ async function registrarJugador(peticion = request, respuesta = response) {
 
 }
 
-async function buscarJugador(peticion = request, respuesta = response) {
+async function buscarHabitacion(peticion = request, respuesta = response) {
 
     try {
 
         let id = peticion.params.id
 
-        let jugador = await leerJugador(id)
+        let habitacion = await leerHabitacion(id)
 
         respuesta.status(200).json({
             estado: true,
-            mensaje: jugador
+            mensaje: habitacion
         })
 
 
@@ -59,7 +59,7 @@ async function buscarJugador(peticion = request, respuesta = response) {
 
 }
 
-async function buscarJugadores(peticion = request, respuesta = response) {
+/*async function buscarJugadores(peticion = request, respuesta = response) {
 
     try {
 
@@ -78,9 +78,9 @@ async function buscarJugadores(peticion = request, respuesta = response) {
         })
     }
 
-}
+*/
 
-async function editarJugador(peticion = request, respuesta = response) {
+async function editarHabitacion(peticion = request, respuesta = response) {
 
 
     try {
@@ -88,11 +88,11 @@ async function editarJugador(peticion = request, respuesta = response) {
         let id = peticion.params.id
         let datosPeticion = peticion.body
 
-        await modificarJugador(id, datosPeticion)
+        await modificarHabitacion(id, datosPeticion)
 
         respuesta.status(200).json({
             estado: true,
-            mensaje: "Exito editando el jugador"
+            mensaje: "Exito editando la habitacion"
         })
 
 
@@ -105,17 +105,17 @@ async function editarJugador(peticion = request, respuesta = response) {
 
 }
 
-async function eliminarJugador(peticion = request, respuesta = response) {
+async function eliminarHabitacion(peticion = request, respuesta = response) {
 
     try {
 
         let id = peticion.params.id
 
-        await borrarJugador(id)
+        await borrarHabitacion(id)
 
         respuesta.status(200).json({
             estado: true,
-            mensaje: "Exito al sacar de la convocatoria al jugador"
+            mensaje: "Exito al eliminar la habitacion"
         })
 
 
@@ -132,10 +132,10 @@ async function eliminarJugador(peticion = request, respuesta = response) {
 
 module.exports = {
 
-    registrarJugador,
-    buscarJugador,
-    buscarJugadores,
-    editarJugador,
-    eliminarJugador
+    registrarHabitacion,
+    buscarHabitacion,
+    //buscarJugadores,
+    editarHabitacion,
+    eliminarHabitacion
 
 }

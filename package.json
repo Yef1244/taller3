@@ -4,11 +4,16 @@
   "description": "Taller3 del momento 2",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "install": "^0.13.0"
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "install": "^0.13.0",
+    "mongoose": "^6.0.12"
   }
 }
