@@ -2,6 +2,7 @@
 
 //IMPORTAR EL MODELO DE DATOS PARA PDOER OPERAR EN BD
 const HabitacionModelo = require('../models/HabitacionModelo.js')
+const ReservaModelo = require('../models/HabitacionModelo.js')
 
 
 //1. Funcion para insertar datos
@@ -21,13 +22,13 @@ async function leerHabitacion(id) {
 }
 
 //3. Funcion para buscar TODOS los Jugadores
-/*async function leerJugadores() {
+async function leerHabitaciones() {
 
-    let jugadoresBuscados = await JugadorModelo.find()
-    return jugadoresBuscados
+    let habitacionesBuscados = await HabitacionModelo.find()
+    return habitacionesBuscados
 
 }
-*/
+
 
 //4. Funcion para eliminar un jugador
 async function borrarHabitacion(id) {
@@ -43,12 +44,57 @@ async function modificarHabitacion(id, datos) {
 
 }
 
+//1. Funcion para insertar datos
+async function insertarReserva(datos) {
+
+    let reservaNuevo = new ReservaModelo(datos)
+    return await reservaNuevo.save()
+
+}
+
+//2. Funcion para buscar 1 Jugador
+async function leerReserva(id) {
+
+    let reservaBuscado = await ReservaModelo.findById(id)
+    return reservaBuscado
+
+}
+
+//3. Funcion para buscar TODOS los Jugadores
+async function leerReservas() {
+
+    let ReservasBuscados = await ReservaModelo.find()
+    return ReservasBuscados
+
+}
+
+
+//4. Funcion para eliminar un jugador
+async function borrarReserva(id) {
+
+    return await ReservaModelo.findByIdAndDelete(id)
+
+}
+
+//5. Funcion para editar un jugador
+async function modificarReserva(id, datos) {
+
+    return await ReservaModelo.findByIdAndUpdate(id, datos)
+
+}
+
 module.exports = {
 
     insertarHabitacion,
     leerHabitacion,
-    //leerJugadores,
+    leerHabitaciones,
     borrarHabitacion,
-    modificarHabitacion
+    modificarHabitacion,
+    //-------------------
+    insertarReserva,
+    leerReserva,
+    leerReservas,
+    borrarReserva,
+    modificarReserva
 
 }

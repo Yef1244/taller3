@@ -6,9 +6,15 @@ const { request, response } = require('express')
 
 const { insertarHabitacion } = require('../services/servicio.js')
 const { leerHabitacion } = require('../services/servicio.js')
-//const { leerJugadores } = require('../services/servicio.js')
+const { leerHabitaciones } = require('../services/servicio.js')
 const { borrarHabitacion } = require('../services/servicio.js')
 const { modificarHabitacion } = require('../services/servicio.js')
+//---------------------------------------------------------------------
+const { insertarReserva } = require('../services/servicio.js')
+const { leerReserva } = require('../services/servicio.js')
+const { leerReservas } = require('../services/servicio.js')
+const { borrarReserva } = require('../services/servicio.js')
+const { modificarReserva } = require('../services/servicio.js')
 
 
 
@@ -59,15 +65,15 @@ async function buscarHabitacion(peticion = request, respuesta = response) {
 
 }
 
-/*async function buscarJugadores(peticion = request, respuesta = response) {
+async function buscarHabitaciones(peticion = request, respuesta = response) {
 
     try {
 
-        let jugadores = await leerJugadores()
+        let habitaciones = await leerHabitaciones()
 
         respuesta.status(200).json({
             estado: true,
-            mensaje: jugadores
+            mensaje: habitaciones
         })
 
 
@@ -78,7 +84,8 @@ async function buscarHabitacion(peticion = request, respuesta = response) {
         })
     }
 
-*/
+}
+
 
 async function editarHabitacion(peticion = request, respuesta = response) {
 
@@ -126,7 +133,123 @@ async function eliminarHabitacion(peticion = request, respuesta = response) {
         })
     }
 
+}
 
+//-----------------------------------------------------------------------------------------------------------
+
+async function registrarReserva(peticion = request, respuesta = response) {
+
+    try {
+
+        let datosPeticion = peticion.body
+
+        await insertarReserva(datosPeticion)
+        respuesta.status(200).json({
+            estado: true,
+            mensaje: "Exito registrando la reserva"
+        })
+
+
+    } catch (error) {
+        respuesta.status(400).json({
+            estado: false,
+            mensaje: "Upss... tenemos un problema: " + error
+        })
+    }
+
+
+}
+
+async function buscarReserva(peticion = request, respuesta = response) {
+
+    try {
+
+        let id = peticion.params.id
+
+        let reserva = await leerReserva(id)
+
+        respuesta.status(200).json({
+            estado: true,
+            mensaje: reserva
+        })
+
+
+    } catch (error) {
+        respuesta.status(400).json({
+            estado: false,
+            mensaje: "Upss... tenemos un problema: " + error
+        })
+    }
+
+}
+
+async function buscarReservas(peticion = request, respuesta = response) {
+
+    try {
+
+        let reservas = await leerReservas()
+
+        respuesta.status(200).json({
+            estado: true,
+            mensaje: reservas
+        })
+
+
+    } catch (error) {
+        respuesta.status(400).json({
+            estado: false,
+            mensaje: "Upss... tenemos un problema: " + error
+        })
+    }
+
+}
+
+
+async function editarReserva(peticion = request, respuesta = response) {
+
+
+    try {
+
+        let id = peticion.params.id
+        let datosPeticion = peticion.body
+
+        await modificarReserva(id, datosPeticion)
+
+        respuesta.status(200).json({
+            estado: true,
+            mensaje: "Exito editando la reserva"
+        })
+
+
+    } catch (error) {
+        respuesta.status(400).json({
+            estado: false,
+            mensaje: "Upss... tenemos un problema: " + error
+        })
+    }
+
+}
+
+async function eliminarReserva(peticion = request, respuesta = response) {
+
+    try {
+
+        let id = peticion.params.id
+
+        await borrarReserva(id)
+
+        respuesta.status(200).json({
+            estado: true,
+            mensaje: "Exito al eliminar la reserva"
+        })
+
+
+    } catch (error) {
+        respuesta.status(400).json({
+            estado: false,
+            mensaje: "Upss... tenemos un problema: " + error
+        })
+    }
 
 }
 
@@ -134,8 +257,14 @@ module.exports = {
 
     registrarHabitacion,
     buscarHabitacion,
-    //buscarJugadores,
+    buscarHabitaciones,
     editarHabitacion,
-    eliminarHabitacion
+    eliminarHabitacion,
+    //----------------
+    registrarReserva,
+    buscarReserva,
+    buscarReservas,
+    editarReserva,
+    eliminarReserva
 
 }
