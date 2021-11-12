@@ -2,33 +2,38 @@
 const { model, Schema } = require('mongoose')
 
 //creamos el esquema de datos
-const HabitacionModelo = Schema({
+const ReservaModelo = Schema({
 
-    nombreHabitacion: {
+    nombreCliente: {
         type: String,
         required: true
     },
 
-    fotografiaHabitacion: {
+    apellidoCliente: {
         type: String,
         required: true
     },
 
-    descripcion: {
-        type: String,
-        required: true
-    },
-
-    precioAdulto: {
+    telefonoCliente: {
         type: Number,
         required: true
     },
 
-    precioNino: {
+    fechaInicio: {
+        type: String,
+        required: true
+    },
+
+    fechaFinal: {
+        type: String,
+        required: true
+    },
+
+    numeroPersonas: {
         type: Number,
         required: true
     }
 
 })
 
-module.exports = model('Habitaciones', HabitacionModelo)
+module.exports = model('Reservas', ReservaModelo)

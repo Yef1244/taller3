@@ -2,7 +2,7 @@
 
 //IMPORTAR EL MODELO DE DATOS PARA PDOER OPERAR EN BD
 const HabitacionModelo = require('../models/HabitacionModelo.js')
-const ReservaModelo = require('../models/HabitacionModelo.js')
+const ReservaModelo = require('../models/ReservaModelo.js')
 
 
 //1. Funcion para insertar datos
